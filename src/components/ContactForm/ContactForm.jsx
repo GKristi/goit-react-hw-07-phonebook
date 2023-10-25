@@ -6,10 +6,9 @@ import {
     InputField,
     InputLabel,
 } from './ContactForm.styled';
-import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { Notify } from 'notiflix';
-import { addContactAction } from 'redux/contact/slice';
+import { createContactThunk } from 'redux/contact/thunks';
 
 const ContactForm = () => {
     const [name, setName] = useState('');
@@ -24,7 +23,7 @@ const ContactForm = () => {
             Notify.failure(`${name} is already in contacts`);
             return;
         }
-        dispatch(addContactAction({ name, number, id: nanoid() }));
+        dispatch(createContactThunk({ name, phone: number }));
         setName('');
         setNumber('');
     };

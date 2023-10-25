@@ -5,16 +5,16 @@ import {
     ContactTextName,
     ContactTextNumber,
 } from './ContactListItem.styled';
-import { removeContactAction } from 'redux/contact/slice';
+import { deleteContactThunk } from 'redux/contact/thunks';
 
 const ContactListItem = ({ contacts }) => {
     const dispatch = useDispatch();
-    return contacts.map(({ id, name, number }) => {
+    return contacts.map(({ id, name, phone }) => {
         return (
             <ContactItem key={id}>
                 <ContactTextName>{name}:</ContactTextName>
-                <ContactTextNumber>{number}</ContactTextNumber>
-                <ContactDeleteBtn onClick={() => dispatch(removeContactAction(id))}>
+                <ContactTextNumber>{phone}</ContactTextNumber>
+                <ContactDeleteBtn onClick={() => dispatch(deleteContactThunk(id))}>
                     delete
                 </ContactDeleteBtn>
             </ContactItem>
